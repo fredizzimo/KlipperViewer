@@ -24,6 +24,6 @@ $(function() {
         // ViewModels your plugin depends on, e.g. loginStateViewModel, settingsViewModel, ...
         dependencies: [ /* "loginStateViewModel", "settingsViewModel" */ ],
         // Elements to bind to, e.g. #settings_plugin_KlipperViewer, #tab_plugin_KlipperViewer, ...
-        elements: [ /* ... */ ]
+        elements: ["#tab_plugin_KlipperViewer"]
     });
 });
