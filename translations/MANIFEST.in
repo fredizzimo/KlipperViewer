@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_KlipperViewer/templates *
+recursive-include octoprint_KlipperViewer/translations *
+recursive-include octoprint_KlipperViewer/static *
