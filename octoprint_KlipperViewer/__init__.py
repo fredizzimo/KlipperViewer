@@ -17,6 +17,8 @@
 
 # coding=utf-8
 from __future__ import absolute_import
+from .serial_parser import SerialParser
+import flask
 
 ### (Don't forget to remove me)
 # This is a basic skeleton for your plugin's __init__.py. You probably want to adjust the class name of your plugin
@@ -30,7 +32,8 @@ import octoprint.plugin
 
 class KlipperviewerPlugin(octoprint.plugin.SettingsPlugin,
                           octoprint.plugin.AssetPlugin,
-                          octoprint.plugin.TemplatePlugin):
+						  octoprint.plugin.TemplatePlugin,
+						  octoprint.plugin.BlueprintPlugin):
 
 	##~~ SettingsPlugin mixin
 
@@ -49,6 +52,19 @@ class KlipperviewerPlugin(octoprint.plugin.SettingsPlugin,
 			css=["css/KlipperViewer.css"],
 			less=["less/KlipperViewer.less"]
 		)
+
+	##~~ BlueprintPlugin mixin
+	@octoprint.plugin.BlueprintPlugin.route("/get_data", methods=["GET"])
+	def get_data(self):
+		parser = SerialParser(
+			"/mnt/f/Geeetech/klipper/test.serial",
+			"/mnt/f/Geeetech/klipper/out/klipper.dict",
+			 self._logger
+		)
+		parser.parse()
+		return flask.jsonify(parser.messages)
+
+
 
 	##~~ Softwareupdate hook
 

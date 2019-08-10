@@ -47,3 +47,12 @@ function animate() {
 	renderer.render( scene, camera );
 }
 animate();
+
+var myRequest = new XMLHttpRequest();
+myRequest.open("GET", "/plugin/KlipperViewer/get_data", true);
+myRequest.onreadystatechange = function () { 
+    if (myRequest.readyState === 4) {
+        document.getElementById("klipperresponse").innerHTML = myRequest.responseText;
+    }
+};
+myRequest.send();
