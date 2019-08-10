@@ -1,0 +1,35 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "TypeScript",
+            "type": "typescript",
+            "tsconfig": "octoprint_KlipperViewer/static/typescript/tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Browserify",
+            "type": "shell",
+            "command": "browserify",
+            "args": ["hello.js", "-o", "bundle.js"],
+            "options": {"cwd": "${workspaceRoot}/octoprint_KlipperViewer/static/generated_js"},
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["TypeScript"]
+        }
+    ]
+}
