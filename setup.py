@@ -30,7 +30,7 @@ plugin_author_email = "fsundvik@gmail.com"
 plugin_url = "https://github.com/fredizzimo/KlipperViewer"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
-plugin_license = "MIT"
+plugin_license = "GPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
 plugin_requires = []
