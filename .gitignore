@@ -1,4 +1,6 @@
 .venv/
 *egg-info
+generated_js/
+node_modules/
 
 *.pyc
