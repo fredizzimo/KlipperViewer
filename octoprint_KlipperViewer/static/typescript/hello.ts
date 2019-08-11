@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 var THREE = require('three');
+var Plotly = require('plotly.js-dist');
 
 var container = document.getElementById("klipperviewer");
 //document.body.appendChild( container );
@@ -52,7 +53,34 @@ var myRequest = new XMLHttpRequest();
 myRequest.open("GET", "/plugin/KlipperViewer/get_data", true);
 myRequest.onreadystatechange = function () { 
     if (myRequest.readyState === 4) {
-        document.getElementById("klipperresponse").innerHTML = myRequest.responseText;
+        var response = JSON.parse(myRequest.responseText);
+        var traces = [];
+        var addTrace = function(axis) {
+            var a = response[axis];
+            var t = a.map(function(tuple) {
+                return tuple[0]
+            });
+            var v= a.map(function(tuple) {
+                return tuple[1]
+            });
+            traces.push({
+                x: t,
+                y: v,
+            });
+        }
+        addTrace(1);
+        addTrace(2);
+        addTrace(3);
+
+        var graph = document.getElementById("klipperviewer-graph");
+        Plotly.plot(graph,
+            traces,
+            {
+                //xaxis: {range: minMax},
+                margin: { t: 0 }
+            }
+        );
+        //document.getElementById("klipperresponse").innerHTML = myRequest.responseText;
     }
 };
 myRequest.send();

@@ -53,7 +53,7 @@ class SerialParser(object):
         self.generate_coordinates()
 
     def generate_coordinates(self):
-        for m in self.messages[:1000]:
+        for m in self.messages:
             name = m["#name"]
             if name == "allocate_oids":
                 num_oids = m["count"]
@@ -68,14 +68,13 @@ class SerialParser(object):
                 oid = m["oid"]
                 d = m["dir"]
                 step_dir[oid] = 1 if d == 0 else -1 
-            elif name == "queue_step" and m["oid"]==2:
+            elif name == "queue_step":
                 oid = m["oid"]
                 interval = m["interval"]
                 count = m["count"]
                 add = m["add"]
                 time = current_clock[oid]
                 d = step_dir[oid]
-                self.logger.info("%i %i" % (oid, d))
                 for _ in range(count):
                     current_step[oid] += d
                     time += interval
