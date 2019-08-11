@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/fredizzimo/KlipperViewer.git"
   },
-  "author": "",
-  "license": "GPLv3",
+  "author": "Fred Sundvik",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/fredizzimo/KlipperViewer/issues"
   },
   "homepage": "https://github.com/fredizzimo/KlipperViewer#readme",
   "dependencies": {
+    "plotly.js-dist": "^1.49.1",
     "three": "^0.107.0",
     "typescript": "^3.5.3"
   },
