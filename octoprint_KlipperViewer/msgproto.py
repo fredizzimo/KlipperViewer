@@ -1,6 +1,7 @@
 # Protocol definitions for firmware communication
 #
 # Copyright (C) 2016-2019  Kevin O'Connor <kevin@koconnor.net>
+# Copyright (C) 2019  Fred Sundvik
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import json, zlib, logging
@@ -255,6 +256,18 @@ class MessageParser:
             mid = self.messages_by_id.get(msgid, self.unknown)
             params, pos = mid.parse(s, pos)
             out.append(mid.format_params(params))
+            if pos >= len(s)-MESSAGE_TRAILER_SIZE:
+                break
+        return out
+    def parse_packet(self, s):
+        out = []
+        pos = MESSAGE_HEADER_SIZE
+        while 1:
+            msgid = s[pos]
+            mid = self.messages_by_id.get(msgid, self.unknown)
+            params, pos = mid.parse(s, pos)
+            params['#name'] = mid.name
+            out.append(params)
             if pos >= len(s)-MESSAGE_TRAILER_SIZE:
                 break
         return out

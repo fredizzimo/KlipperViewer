@@ -62,7 +62,8 @@ class KlipperviewerPlugin(octoprint.plugin.SettingsPlugin,
 			 self._logger
 		)
 		parser.parse()
-		return flask.jsonify(parser.messages)
+		return flask.jsonify(parser.steps)
+		#return flask.jsonify(parser.raw_messages)
 
 
 
