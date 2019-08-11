@@ -10,9 +10,14 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -22,8 +27,12 @@
             "args": ["hello.js", "-o", "bundle.js"],
             "options": {"cwd": "${workspaceRoot}/octoprint_KlipperViewer/static/generated_js"},
             "presentation": {
-                "reveal": "always",
-                "panel": "new"
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
             },
             "group": {
                 "kind": "build",
